@@ -1,66 +1,70 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Site Completo</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Site Completo</title>
 
-<style>
-    /* RESET */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Arial, Helvetica, sans-serif;
-    }
+    <style>
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-    /* NOVO → ORGANIZAÇÃO VERTICAL */
-    body {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        background-color: #fff;
-        position: relative;
-        overflow-x: hidden;
-    }
+        /* NOVO → ORGANIZAÇÃO VERTICAL */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #fff;
+            position: relative;
+            overflow-x: hidden;
+        }
 
-    /* ===== FUNDO DE LAVA CAINDO ===== */
-    body::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: linear-gradient(
-            to bottom,
-            rgba(255,80,0,0.9),
-            rgba(255,40,0,0.8),
-            rgba(200,0,0,0.9)
-        );
-        background-size: 100% 300%;
-        animation: lava 5s linear infinite;
-        z-index: -1;
-        pointer-events: none;
-    }
+        /* ===== FUNDO DE LAVA CAINDO ===== */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(to bottom,
+                    rgba(255, 80, 0, 0.9),
+                    rgba(255, 40, 0, 0.8),
+                    rgba(200, 0, 0, 0.9));
+            background-size: 100% 300%;
+            animation: lava 5s linear infinite;
+            z-index: -1;
+            pointer-events: none;
+        }
 
-    @keyframes lava {
-        0% { background-position: 0 0; }
-        100% { background-position: 0 100%; }
-    }
+        @keyframes lava {
+            0% {
+                background-position: 0 0;
+            }
 
-    /* TOPO VERDE */
-    header {
-        background-color: #13000D;
-        color: white;
-        padding: 20px;
-        text-align: center;
-        animation: flutuar 3s ease-in-out infinite;
-        display: flex;
+            100% {
+                background-position: 0 100%;
+            }
+        }
+
+        /* TOPO VERDE */
+        header {
+            background-color: #13000D;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            animation: flutuar 3s ease-in-out infinite;
+            display: flex;
             justify-content: space-around;
-    }
+        }
 
-    
+
         .sgeek {
             display: flex;
             flex-direction: row;
@@ -116,164 +120,174 @@
             filter: drop-shadow(0px 0px 12px black);
             user-select: none;
         }
-    /* LOGO NO HEADER */
-    .logo-header {
-        width: 180px;
-        filter: drop-shadow(0 0 8px rgba(255,255,255,0.4));
-        animation: flutuar 3s ease-in-out infinite;
-    }
 
-    @keyframes flutuar {
-        0% { transform: translateY(0); }
-        50% { transform: translateY(-6px); }
-        100% { transform: translateY(0); }
-    }
-
-    /* CORPO */
-    main {
-        background-color: #ffffff00; /* deixa o fundo transparente para ver a lava */
-        padding: 30px;
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-    }
-
-    /* GRID DE IMAGENS */
-    .grid-imagens {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-        margin-bottom: 30px;
-    }
-
-    /* CAIXAS */
-    .box {
-        position: relative;
-        width: 100%;
-        height: 180px;
-        background-color: #1b8f3b;
-        border-radius: 10px;
-        overflow: hidden;
-        cursor: pointer;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    /* IMAGEM */
-    .box img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-    }
-
-    .box:hover img {
-        transform: scale(1.07);
-    }
-
-    /* GRADIENTE */
-    .box::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        height: 60px;
-        background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0));
-        opacity: 0.7;
-        transition: opacity 0.3s ease;
-    }
-
-    /* TÍTULO */
-    .titulo {
-        position: absolute;
-        left: 10px;
-        bottom: 10px;
-        color: white;
-        font-size: 1rem;
-        font-weight: bold;
-        opacity: 0.85;
-        transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-
-    /* HOVER */
-    .box:hover {
-        transform: scale(1.05);
-        box-shadow: 0 8px 15px rgba(0,0,0,0.25);
-    }
-
-    .box:hover .titulo {
-        transform: translateY(-5px);
-        opacity: 1;
-    }
-
-    .box:hover::after {
-        opacity: 0.9;
-    }
-
-    /* BOTÃO AMARELO */
-    .btn-jogar {
-        display: inline-block;
-        padding: 12px 25px;
-        background-color: #ffdd00;
-        color: #000;
-        font-size: 1.1rem;
-        font-weight: bold;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: transform 0.25s ease, background-color 0.25s ease;
-        text-align: center;
-    }
-
-    .btn-jogar:hover {
-        background-color: #ffe44c;
-        transform: scale(1.05);
-    }
-
-    .btn-jogar:active {
-        transform: scale(0.92);
-    }
-
-    .btn-container {
-        text-align: center;
-        margin-top: 10px;
-    }
-
-    /* RODAPÉ AZUL */
-    footer {
-        background-color: #0053d6;
-        color: white;
-        padding: 25px 15px;
-        text-align: center;
-    }
-
-    footer .linha1 {
-        font-size: 0.85rem;
-        font-family: "Arial", sans-serif;
-        margin-bottom: 6px;
-        opacity: 0.95;
-    }
-
-    footer .linha2 {
-        font-size: 0.80rem;
-        font-family: "Courier New", monospace;
-        margin-bottom: 6px;
-        opacity: 0.9;
-    }
-
-    footer .linha3 {
-        font-size: 0.75rem;
-        font-family: "Verdana", sans-serif;
-        opacity: 0.85;
-    }
-
-    /* RESPONSIVO */
-    @media (max-width: 600px) {
-        .grid-imagens {
-            grid-template-columns: 1fr;
+        /* LOGO NO HEADER */
+        .logo-header {
+            width: 180px;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+            animation: flutuar 3s ease-in-out infinite;
         }
-        
+
+        @keyframes flutuar {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* CORPO */
+        main {
+            background-color: #ffffff00;
+            /* deixa o fundo transparente para ver a lava */
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        /* GRID DE IMAGENS */
+        .grid-imagens {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        /* CAIXAS */
+        .box {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            background-color: #1b8f3b;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* IMAGEM */
+        .box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .box:hover img {
+            transform: scale(1.07);
+        }
+
+        /* GRADIENTE */
+        .box::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        /* TÍTULO */
+        .titulo {
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            opacity: 0.85;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        /* HOVER */
+        .box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
+        }
+
+        .box:hover .titulo {
+            transform: translateY(-5px);
+            opacity: 1;
+        }
+
+        .box:hover::after {
+            opacity: 0.9;
+        }
+
+        /* BOTÃO AMARELO */
+        .btn-jogar {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #ffdd00;
+            color: #000;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.25s ease, background-color 0.25s ease;
+            text-align: center;
+        }
+
+        .btn-jogar:hover {
+            background-color: #ffe44c;
+            transform: scale(1.05);
+        }
+
+        .btn-jogar:active {
+            transform: scale(0.92);
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* RODAPÉ AZUL */
+        footer {
+            background-color: #0053d6;
+            color: white;
+            padding: 25px 15px;
+            text-align: center;
+        }
+
+        footer .linha1 {
+            font-size: 0.85rem;
+            font-family: "Arial", sans-serif;
+            margin-bottom: 6px;
+            opacity: 0.95;
+        }
+
+        footer .linha2 {
+            font-size: 0.80rem;
+            font-family: "Courier New", monospace;
+            margin-bottom: 6px;
+            opacity: 0.9;
+        }
+
+        footer .linha3 {
+            font-size: 0.75rem;
+            font-family: "Verdana", sans-serif;
+            opacity: 0.85;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 600px) {
+            .grid-imagens {
+                grid-template-columns: 1fr;
+            }
+
             .grid {
                 grid-template-columns: 1fr;
             }
@@ -287,48 +301,47 @@
                 flex-direction: column;
 
             }
-    }
+        }
 
-    /* MODAL */
-    #overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(0,0,0,0.75);
-        display: none;
-        justify-content: center;
-        align-items: center;
-        z-index: 9998;
-    }
+        /* MODAL */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.75);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9998;
+        }
 
-    #modal-img {
-        max-width: 90vw;
-        max-height: 90vh;
-        border-radius: 12px;
-        transform: scale(0.6);
-        opacity: 0;
-        transition: transform 0.35s ease, opacity 0.35s ease;
-        z-index: 9999;
-    }
+        #modal-img {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 12px;
+            transform: scale(0.6);
+            opacity: 0;
+            transition: transform 0.35s ease, opacity 0.35s ease;
+            z-index: 9999;
+        }
 
-    #overlay.mostrar {
-        display: flex;
-    }
+        #overlay.mostrar {
+            display: flex;
+        }
 
-    #modal-img.mostrar {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-</style>
+        #modal-img.mostrar {
+            transform: scale(1);
+            opacity: 1;
+        }
+    </style>
 </head>
 
 <body>
 
-<header>
-    <a class="sgeek" href="https://wa.me/551635110871?text=Ol%C3%A1,%20gostaria%20de%20agendar%20uma%20aula%20demo."
+    <header>
+        <a class="sgeek" href="https://wa.me/551635110871?text=Ol%C3%A1,%20gostaria%20de%20agendar%20uma%20aula%20demo."
             target="_blank">
 
             <img src="supergeeks.png" alt="logo-supergeeks">
@@ -343,79 +356,86 @@
         <div class="gamelogo">
             <img src="logo.png" alt="logo do jogo">
         </div>
-</header>
+    </header>
 
-<main>
-    <h2>Galeria</h2>
+    <main>
+        <h2>Galeria</h2>
 
-    <div class="grid-imagens">
+        <div class="grid-imagens">
 
-        <div class="box" data-img="background.png">
-            <img src="background.png" alt="Background">
-            <span class="titulo">Background</span>
+            <div class="box" data-img="background.png">
+                <img src="background.png" alt="Background">
+                <span class="titulo">Background</span>
+            </div>
+
+            <div class="box" data-img="tilemap.png">
+                <img src="tilemap.png" alt="Tilemap">
+                <span class="titulo">Tilemap</span>
+            </div>
+
+            <div class="box" data-img="char.png">
+                <img src="char.png" alt="Alhen">
+                <span class="titulo">Personagem</span>
+            </div>
+
+            <div class="box" data-img="enemy.png">
+                <img src="enemy.png" alt="Sprite Sheet">
+                <span class="titulo">Inimigo</span>
+            </div>
+
         </div>
 
-        <div class="box" data-img="tilemap.png">
-            <img src="tilemap.png" alt="Tilemap">
-            <span class="titulo">Tilemap</span>
+        <div class="btn-container">
+            <button class="btn-jogar">Jogar agora</button>
         </div>
+    </main>
 
-        <div class="box" data-img="char.png">
-            <img src="char.png" alt="Alhen">
-            <span class="titulo">Personagem</span>
-        </div>
+    <footer>
+        <p class="linha1">Projeto desenvolvido por <strong>Matheus Eduardo Dos Santos</strong></p>
+        <p class="linha2">Produzido no Curso <strong>Natal IA - SuperGeeks Sertãozinho</strong></p>
+        <p class="linha3">Todos os direitos reservados.</p>
+    </footer>
 
-        <div class="box" data-img="enemy.png">
-            <img src="enemy.png" alt="Sprite Sheet">
-            <span class="titulo">Inimigo</span>
-        </div>
-
+    <!-- MODAL -->
+    <div id="overlay">
+        <img id="modal-img">
     </div>
 
-    <div class="btn-container">
-        <button class="btn-jogar">Jogar agora</button>
-    </div>
-</main>
+    <script>
+        const boxes = document.querySelectorAll(".box");
+        const overlay = document.getElementById("overlay");
+        const modalImg = document.getElementById("modal-img");
 
-<footer>
-    <p class="linha1">Projeto desenvolvido por <strong>Matheus Eduardo Dos Santos</strong></p>
-    <p class="linha2">Produzido no Curso <strong>Natal IA - SuperGeeks Sertãozinho</strong></p>
-    <p class="linha3">Todos os direitos reservados.</p>
-</footer>
+        boxes.forEach(box => {
+            box.addEventListener("click", () => {
+                const imgSrc = box.getAttribute("data-img");
+                modalImg.src = imgSrc;
 
-<!-- MODAL -->
-<div id="overlay">
-    <img id="modal-img">
-</div>
+                overlay.classList.add("mostrar");
 
-<script>
-    const boxes = document.querySelectorAll(".box");
-    const overlay = document.getElementById("overlay");
-    const modalImg = document.getElementById("modal-img");
-
-    boxes.forEach(box => {
-        box.addEventListener("click", () => {
-            const imgSrc = box.getAttribute("data-img");
-            modalImg.src = imgSrc;
-
-            overlay.classList.add("mostrar");
-
-            setTimeout(() => {
-                modalImg.classList.add("mostrar");
-            }, 10);
+                setTimeout(() => {
+                    modalImg.classList.add("mostrar");
+                }, 10);
+            });
         });
-    });
 
-    overlay.addEventListener("click", (e) => {
-        if (e.target === overlay) {
-            modalImg.classList.remove("mostrar");
-            setTimeout(() => {
-                overlay.classList.remove("mostrar");
-                modalImg.src = "";
-            }, 200);
-        }
-    });
-</script>
+        overlay.addEventListener("click", (e) => {
+            if (e.target === overlay) {
+                modalImg.classList.remove("mostrar");
+                setTimeout(() => {
+                    overlay.classList.remove("mostrar");
+                    modalImg.src = "";
+                }, 200);
+            }
+        });
+
+
+        //Inserir link
+        document.querySelector("button").addEventListener("click", () => {
+            window.open("https://google.com.br", "_blank");
+        });
+    </script>
 
 </body>
+
 </html>
